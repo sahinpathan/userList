@@ -5,6 +5,9 @@
  *
  * @return {object}          The parsed JSON from the request
  */
+
+import { API_BASE_URL } from '../containers/UserPage/constants';
+
 function parseJSON(response) {
   if (response.status === 204 || response.status === 205) {
     return null;
@@ -38,7 +41,7 @@ function checkStatus(response) {
  * @return {object}           The response data
  */
 export default function request(url, options) {
-  return fetch(url, options)
+  return fetch(`${API_BASE_URL}${url}`, options)
     .then(checkStatus)
     .then(parseJSON);
 }

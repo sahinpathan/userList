@@ -8,15 +8,17 @@ import { connectRouter } from 'connected-react-router';
 import history from 'utils/history';
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import { reducer as reduxFormReducer } from 'react-final-form';
+import userReducer from './containers/UserPage/reducer';
+// import { Form } from 'react-final-form';
 
-/**
- * Merges the main reducer with the router state and dynamically injected reducers
- */
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
     global: globalReducer,
+    users: userReducer,
     language: languageProviderReducer,
     router: connectRouter(history),
+    form: reduxFormReducer,
     ...injectedReducers,
   });
 
